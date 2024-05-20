@@ -54,13 +54,29 @@ func main() {
 			return
 		}
 
-		var deploymentNames []string
+		type DeploymentInfo struct {
+			Name        string            `json:"name"`
+			Namespace   string            `json:"namespace"`
+			Replicas    int32             `json:"replicas"`
+			Labels      map[string]string `json:"labels"`
+			Annotations map[string]string `json:"annotations"`
+			// 可以根据需要添加更多字段
+		}
+
+		var deploymentInfos []DeploymentInfo
 		for _, deployment := range deployments.Items {
-			deploymentNames = append(deploymentNames, deployment.Name)
+			deploymentInfo := DeploymentInfo{
+				Name:        deployment.Name,
+				Namespace:   deployment.Namespace,
+				Replicas:    *deployment.Spec.Replicas,
+				Labels:      deployment.Labels,
+				Annotations: deployment.Annotations,
+			}
+			deploymentInfos = append(deploymentInfos, deploymentInfo)
 		}
 
 		c.JSON(http.StatusOK, gin.H{
-			"deployments": deploymentNames,
+			"deployments": deploymentInfos,
 		})
 	})
 
