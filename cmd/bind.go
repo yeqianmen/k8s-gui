@@ -3,9 +3,9 @@ package main
 import "github.com/gin-gonic/gin"
 
 type UserInfo struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
-	Sex  string `json:"sex"`
+	Name string `json:"name" form:"name"`
+	Age  int    `json:"age" form:"age"`
+	Sex  string `json:"sex" form:"sex""`
 }
 
 func bindQuery(c *gin.Context) {
