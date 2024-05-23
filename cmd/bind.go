@@ -1,11 +1,13 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 type UserInfo struct {
-	Name string `json:"name" form:"name"`
-	Age  int    `json:"age" form:"age"`
-	Sex  string `json:"sex" form:"sex""`
+	Name string `json:"name" form:"name" uri:"name"`
+	Age  int    `json:"age" form:"age" uri:"age"`
+	Sex  string `json:"sex" form:"sex" uri:"sex"`
 }
 
 func bindQuery(c *gin.Context) {

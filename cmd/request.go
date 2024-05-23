@@ -16,8 +16,8 @@ func form(c *gin.Context) {
 	s := c.PostFormArray("name")
 	fmt.Printf("s: %v\n", s)
 	c.JSON(200, gin.H{
-		"nameArry": s,
-		"name":     name,
+		"nameArray": s,
+		"name":      name,
 	})
 	city := c.DefaultPostForm("city", "JiNan")
 	c.JSON(200, gin.H{
@@ -25,6 +25,7 @@ func form(c *gin.Context) {
 	})
 	fmt.Println(c.MultipartForm())
 }
+
 func main() {
 	r := gin.Default()
 	r.GET("/query/:userId/:bookId", query)
